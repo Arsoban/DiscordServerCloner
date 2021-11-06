@@ -1,8 +1,34 @@
+## English
+
+### Functions
+
+Write `/clone` on the server you want to copy.
+
+Clones: server icon, all channels with permissions, all roles with permissions, emojis.
+
+### Launching Program
+
+For launch program you need Java, desirable Java 16.
+
+Download archive from releases, unpack.
+
+Open .env file, after `TOKEN=` write your Discord account token.
+
+Launch `start.bat` if you are on Windows, or `start.sh` if you are on Linux.
+
+Write `/clone` on server you want to clone.
+
+### Contact Author
+
+Discord: Ars#9605
+
+## Russian
+
 ### Функционал
 
 Напишите `/clone` на том сервере который вы хотите склонировать.
 
-Клонирует: иконку сервера, каналы со всеми правами, в том числе и закрытые, роли со всеми правами, эмодзи.
+Клонирует: иконку сервера, каналы со всеми правами, роли со всеми правами, эмодзи.
 
 ### Запуск
 

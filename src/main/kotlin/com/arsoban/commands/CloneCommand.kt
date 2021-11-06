@@ -15,7 +15,7 @@ class CloneCommand : MessageCreateListener {
         if (event!!.messageContent.lowercase() == "/clone" && event.message.author.asUser().get() == Bot.api.yourself){
             event.message.delete().join();
 
-            println("Создаю сервер...")
+            println("Creating server... | Создаю сервер...")
 
             var newServerIcon: Icon? = try {
                 event.server.get().icon.get();
@@ -33,7 +33,7 @@ class CloneCommand : MessageCreateListener {
                     }
                 }.create().join();
             } catch (exc: Exception){
-                println("Произошла ошибка при создании сервера! Скорее всего у тебя уже лимит 100 серверов!")
+                println("Error was found when creating server! Maybe you have 100 servers limit! | Произошла ошибка при создании сервера! Скорее всего у тебя уже лимит 100 серверов!")
                 exitProcess(0)
             }
 
@@ -41,9 +41,9 @@ class CloneCommand : MessageCreateListener {
 
             var newServer = Bot.api.getServerById(newServerId).get();
 
-            println("Создал сервер \"${newServer.name}\"")
+            println("Created server \"${newServer.name}\" | Создал сервер \"${newServer.name}\"")
 
-            println("Создаю роли... (сейчас идёт только этот процесс чтобы избежать баги)")
+            println("Creating roles... (only this process is running to avoid bugs) | Создаю роли... (сейчас идёт только этот процесс чтобы избежать баги)")
 
             var rolesThread = thread {
                 event.server.get().roles.reversed().forEach { role ->
@@ -58,14 +58,14 @@ class CloneCommand : MessageCreateListener {
                         setMentionable(role.isMentionable)
                         setDisplaySeparately(role.isDisplayedSeparately)
                     }.create().join().also {
-                        println("Создал роль \"${it.name}\"")
+                        println("Created role \"${it.name}\" | Создал роль \"${it.name}\"")
                     }
                 }
             }
 
             rolesThread.join()
 
-            println("Удаляю стандартные каналы...")
+            println("Deleting default channels... | Удаляю стандартные каналы...")
 
             var deleteDefaultChannelsThread = thread {
                 newServer.channels.forEach { channel ->
@@ -73,7 +73,7 @@ class CloneCommand : MessageCreateListener {
                 }
             }
 
-            println("Создаю каналы...")
+            println("Creating channels... | Создаю каналы...")
 
             var currentCategory: ChannelCategory? = null;
 
@@ -84,11 +84,11 @@ class CloneCommand : MessageCreateListener {
                             var channelCategory = newServer.createChannelCategoryBuilder().apply {
                                 setName(channel.name)
                             }.create().join().also {
-                                println("Создал категорию \"${it.name}\"")
+                                println("Created category \"${it.name}\" | Создал категорию \"${it.name}\"")
                                 currentCategory = it;
                             }
 
-                            println("Настраиваю права для категории ${channelCategory.name}")
+                            println("Editing permissions for category \"${channelCategory.name}\" | Настраиваю права для категории \"${channelCategory.name}\"")
 
                             channel.overwrittenRolePermissions.forEach { rolePermissions ->
                                 channelCategory.createUpdater().addPermissionOverwrite(newServer.getRolesByName(Bot.api.getRoleById(rolePermissions.key).get().name)[0], rolePermissions.value).update().join()
@@ -102,10 +102,10 @@ class CloneCommand : MessageCreateListener {
                                     setCategory(it)
                                 }
                             }.create().join().also {
-                                println("Создал текстовой канал \"${it.name}\"")
+                                println("Created text channel \"${it.name}\" | Создал текстовой канал \"${it.name}\"")
                             }
 
-                            println("Настраиваю права для текстового канала ${textChannel.name}")
+                            println("Editing permissions for text channel \"${textChannel.name}\" | Настраиваю права для текстового канала \"${textChannel.name}\"")
 
                             channel.overwrittenRolePermissions.forEach { rolePermissions ->
                                 textChannel.createUpdater().addPermissionOverwrite(newServer.getRolesByName(Bot.api.getRoleById(rolePermissions.key).get().name)[0], rolePermissions.value).update().join()
@@ -119,24 +119,24 @@ class CloneCommand : MessageCreateListener {
                                     setCategory(it)
                                 }
                             }.create().join().also {
-                                println("Создал голосовой канал \"${it.name}\"")
+                                println("Created voice channel \"${it.name}\" | Создал голосовой канал \"${it.name}\"")
                             }
 
-                            println("Настраиваю права для голосового канала ${voiceChannel.name}")
+                            println("Editing permissions for voice channel \"${voiceChannel.name}\" | Настраиваю права для голосового канала \"${voiceChannel.name}\"")
 
                             channel.overwrittenRolePermissions.forEach { rolePermissions ->
                                 voiceChannel.createUpdater().addPermissionOverwrite(newServer.getRolesByName(Bot.api.getRoleById(rolePermissions.key).get().name)[0], rolePermissions.value).update().join()
                             }
                         }
                         ChannelType.SERVER_STAGE_VOICE_CHANNEL -> {
-                            println("Не смог создать stage канал :(")
+                            println("Could not created stage channel :( | Не смог создать stage канал :(")
                         }
                         else -> {}
                     }
                 }
             }
 
-            println("Создаю эмодзи...")
+            println("Creating emojis... | Создаю эмодзи...")
 
             var createEmojisThread = thread {
                 event.server.get().customEmojis.forEach { emoji ->
@@ -144,7 +144,7 @@ class CloneCommand : MessageCreateListener {
                         setName(emoji.name)
                         setImage(emoji.image)
                     }.create().join().also {
-                        println("Создал эмодзи \"${it.name}\"")
+                        println("Created emoji \"${it.name}\" | Создал эмодзи \"${it.name}\"")
                     }
                 }
             }
@@ -155,7 +155,7 @@ class CloneCommand : MessageCreateListener {
 
 
 
-            println("Сервер склонирован :)")
+            println("Server cloned :) | Сервер склонирован :)")
         }
     }
 
