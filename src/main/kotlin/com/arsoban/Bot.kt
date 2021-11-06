@@ -16,7 +16,7 @@ class Bot {
     }
 
     fun createBot(){
-        println("Starting DiscordServerClonner v${version} | Запускается DiscordServerClonner v${version}");
+        println("Starting DiscordServerCloner v${version} | Запускается DiscordServerCloner v${version}");
 
         var dotenv = Dotenv.load();
 
