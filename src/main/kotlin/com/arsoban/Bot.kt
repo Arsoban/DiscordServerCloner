@@ -11,9 +11,13 @@ class Bot {
     companion object{
         @JvmStatic
         lateinit var api: DiscordApi;
+
+        var version: String = "1.1";
     }
 
     fun createBot(){
+        println("Starting DiscordServerClonner v${version} | Запускается DiscordServerClonner v${version}");
+
         var dotenv = Dotenv.load();
 
         api = DiscordApiBuilder()
