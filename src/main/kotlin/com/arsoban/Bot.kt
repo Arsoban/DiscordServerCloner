@@ -13,7 +13,7 @@ class Bot {
         @JvmStatic
         lateinit var api: DiscordApi;
 
-        const val version: String = "1.1";
+        const val version: String = "1.3";
     }
 
     fun createBot(){
