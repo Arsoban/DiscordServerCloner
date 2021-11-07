@@ -16,7 +16,7 @@ Open .env file, after `TOKEN=` write your Discord account token.
 
 Launch `start.bat` if you are on Windows, or `start.sh` if you are on Linux.
 
-Write `/clone` on server you want to clone.
+Write `/clone` on server you want to clone or write `/clone <Server ID>`.
 
 ### Contact Author
 
@@ -40,7 +40,7 @@ Discord: Ars#9605
 
 Запускаете `start.bat` если вы на Windows, если вы на Linux запускаете `start.sh`.
 
-Пишите `/clone` на сервере который хотите склонировать.
+Пишите `/clone` на сервере который хотите склонировать или пишите в терминале `/clone <ID Сервера>`.
 
 ### Связь с автором
 
