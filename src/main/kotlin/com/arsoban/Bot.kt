@@ -1,6 +1,7 @@
 package com.arsoban
 
 import com.arsoban.commands.CloneCommand
+import com.arsoban.commands.CloneCommandTerminal
 import io.github.cdimascio.dotenv.Dotenv
 import org.javacord.api.AccountType
 import org.javacord.api.DiscordApi
@@ -27,7 +28,27 @@ class Bot {
 
         api.addListener(CloneCommand())
 
-        println("Бот запущен!")
+        println("Селфбот ${api.yourself.discriminatedName} запущен!")
+
+        terminalCommands();
+    }
+
+    private fun terminalCommands(){
+        readLine().also {
+            if (it!!.startsWith("/clone")){
+                var command = it.split(Regex(" +"));
+
+                if (command.size == 2){
+                    var cloneCommandTerminal = CloneCommandTerminal()
+
+                    cloneCommandTerminal.clone(command[1].toLong())
+                } else{
+                    println("Неверное использование команды!\nИспользование: /clone <ID Сервера>")
+                }
+            }
+        }
+
+        terminalCommands();
     }
 
 }

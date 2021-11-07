@@ -2,7 +2,7 @@
 
 ### Functions
 
-Write `/clone` on the server you want to copy.
+Write `/clone` on the server you want to copy or write `/clone <Discord Server ID>` in program terminal.
 
 Clones: server icon, all channels with permissions, all roles with permissions, emojis.
 
@@ -26,7 +26,7 @@ Discord: Ars#9605
 
 ### Функционал
 
-Напишите `/clone` на том сервере который вы хотите склонировать.
+Напишите `/clone` на том сервере который вы хотите склонировать или напишите `/clone <ID Сервера>` в терминале программы.
 
 Клонирует: иконку сервера, каналы со всеми правами, роли со всеми правами, эмодзи.
 
