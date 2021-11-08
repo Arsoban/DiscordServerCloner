@@ -22,6 +22,8 @@ Write `/clone` on server you want to clone or write `/clone <Server ID>`.
 
 Discord: Ars#9605
 
+Discord Server: https://discord.gg/KtEMK2XMD4
+
 ## Russian
 
 ### Функционал
@@ -45,3 +47,5 @@ Discord: Ars#9605
 ### Связь с автором
 
 Дискорд: Ars#9605
+
+Дискорд Сервер: https://discord.gg/KtEMK2XMD4
