@@ -10,14 +10,13 @@ import org.javacord.api.DiscordApiBuilder
 class Bot {
 
     companion object{
-        @JvmStatic
         lateinit var api: DiscordApi;
 
-        const val version: String = "1.3";
+        const val version: String = "2.0";
     }
 
     fun createBot(){
-        println("Starting DiscordServerCloner v${version} | Запускается DiscordServerCloner v${version}");
+        println("Launching DiscordServerCloner v${version}")
 
         var dotenv = Dotenv.load();
 
@@ -28,33 +27,35 @@ class Bot {
 
         api.addListener(CloneCommand())
 
-        println("Селфбот ${api.yourself.discriminatedName} запущен!")
+        println("Selfbot ${api.yourself.discriminatedName} launched!")
 
-        terminalCommands();
+        terminalCommands()
     }
 
     private fun terminalCommands(){
-        readLine().also {
-            if (it!!.startsWith("/clone")){
-                var command = it.split(Regex(" +"));
+        while (true) {
+            readLine().also {
+                if (it!!.startsWith("/clone")){
+                    var command = it.split(Regex(" +"));
 
-                if (command.size == 2){
-                    var cloneCommandTerminal = CloneCommandTerminal()
+                    if (command.size == 2){
+                        var cloneCommandTerminal = CloneCommandTerminal()
 
-                    cloneCommandTerminal.clone(command[1].toLong())
-                } else{
-                    println("Неверное использование команды!\nИспользование: /clone <ID Сервера>")
+                        cloneCommandTerminal.clone(command[1].toLong())
+                    } else{
+                        println("Error found in this command!\nSyntax: /clone <Server ID>")
+                    }
+                } else {
+                    println("Command with that name not found!\nCommand list:\n/clone <Server ID>")
                 }
             }
         }
-
-        terminalCommands();
     }
 
 }
 
 fun main() {
-    var bot = Bot();
+    val bot = Bot();
 
     bot.createBot();
 }
