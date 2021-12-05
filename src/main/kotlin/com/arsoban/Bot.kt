@@ -10,13 +10,14 @@ import org.javacord.api.DiscordApiBuilder
 class Bot {
 
     companion object{
+        @JvmStatic
         lateinit var api: DiscordApi;
 
-        const val version: String = "2.0";
+        const val version: String = "1.4";
     }
 
     fun createBot(){
-        println("Launching DiscordServerCloner v${version}")
+        println("Launching DiscordServerCloner v${version}");
 
         var dotenv = Dotenv.load();
 
@@ -29,33 +30,33 @@ class Bot {
 
         println("Selfbot ${api.yourself.discriminatedName} launched!")
 
-        terminalCommands()
+        terminalCommands();
     }
 
     private fun terminalCommands(){
-        while (true) {
-            readLine().also {
-                if (it!!.startsWith("/clone")){
-                    var command = it.split(Regex(" +"));
+        readLine().also {
+            if (it!!.startsWith("/clone")){
+                var command = it.split(Regex(" +"));
 
-                    if (command.size == 2){
-                        var cloneCommandTerminal = CloneCommandTerminal()
+                if (command.size == 2){
+                    var cloneCommandTerminal = CloneCommandTerminal()
 
-                        cloneCommandTerminal.clone(command[1].toLong())
-                    } else{
-                        println("Error found in this command!\nSyntax: /clone <Server ID>")
-                    }
-                } else {
-                    println("Command with that name not found!\nCommand list:\n/clone <Server ID>")
+                    cloneCommandTerminal.clone(command[1].toLong())
+                } else{
+                    println("Wrong command syntax!\nSyntax: /clone <Server ID>")
                 }
+            } else {
+                println("Unknown command.\nCommand list:\n/clone <Server ID>")
             }
         }
+
+        terminalCommands();
     }
 
 }
 
 fun main() {
-    val bot = Bot();
+    var bot = Bot();
 
     bot.createBot();
 }
