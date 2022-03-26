@@ -1,3 +1,4 @@
+# This project is deprecated, new project: https://github.com/Arsoban/discord_server_cloner
 ## Functions
 
 Write `/clone` on the server you want to copy or write `/clone <Discord Server ID>` in program terminal.
